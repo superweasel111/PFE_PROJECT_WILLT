@@ -7,4 +7,10 @@ add_executable(PFE_PROJECT_WILLT main.c
         waveform.h
         waveform.c
         io.c
-        io.h)
+        io.h
+        testing.c)
+
+add_executable(testing_run
+        testing.c
+        io.c
+)

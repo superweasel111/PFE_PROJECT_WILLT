@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
         return 404;
     }
 
-    const WaveformSample sample_store[1000] = extractFileData(file);
+    const WaveformSample* sample_store = extractFileData(file);
 
     // Initialise Phase structs for each phase and assign pointers for later editing
     Phase A = {0,0,0,0,0,0};

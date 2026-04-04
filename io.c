@@ -2,13 +2,14 @@
 // Created by willr on 02/04/2026.
 //
 #include <stdio.h>
+#include <stdlib.h>
 #include "io.h"
 #include "waveform.h"
 
-WaveformSample extractFileData(FILE* file)
+WaveformSample* extractFileData(FILE* file)
 {
 
-    WaveformSample sample_store[1000];
+    WaveformSample* sample_store = malloc(sizeof(WaveformSample) * 1000);
 
     int line_index = 1;
     char current_line[256];
@@ -28,7 +29,7 @@ WaveformSample extractFileData(FILE* file)
         line_index++;
     }
 
-    return *sample_store;
+    return sample_store;
 }
 
 
