@@ -6,25 +6,25 @@
 #define PFE_PROJECT_WILLT_WAVEFORM_H
 
 typedef struct{
-    float timestamp;
-    float phase_A_voltage;
-    float phase_B_voltage;
-    float phase_C_voltage;
-    float line_current;
-    float frequency;
-    float power_factor;
-    float thd_percent;
+    double timestamp;
+    double phase_A_voltage;
+    double phase_B_voltage;
+    double phase_C_voltage;
+    double line_current;
+    double frequency;
+    double power_factor;
+    double thd_percent;
 }WaveformSample;
 
 typedef struct
 {
-    float voltage_running_total;
-    float mean;
-    float voltage_square_total;
-    float RMS;
-    float RMS_compliance;
+    double voltage_running_total;
+    double mean;
+    double voltage_square_total;
+    double RMS;
+    double RMS_compliance;
     int clip_count;
-    float clip_timestamps[];
+    double clip_timestamps[];
 }Phase;
 
 // list of functions:

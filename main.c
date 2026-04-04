@@ -1,11 +1,19 @@
 #include <stdio.h>
 #include "waveform.h"
+#include "io.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    extractFileData(file_input);
+    const char* file_input = argv[0]; // Grab the first argument from the command line as the file name
 
+    const FILE* file = fopen(file_input, "r"); // Open the file
+    if (file == NULL)
+    {
+        printf("Error opening file. Does it exist?");
+        return 404;
+    }
 
+    const WaveformSample sample_store[1000] = extractFileData(file);
 
     // Initialise Phase structs for each phase and assign pointers for later editing
     Phase A = {0,0,0,0,0,0};
