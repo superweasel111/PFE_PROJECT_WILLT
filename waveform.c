@@ -2,34 +2,27 @@
 #include <math.h>
 #include "waveform.h"
 
-void clipCheck(const WaveformSample* sample_data, Phase* A_data, Phase* B_data, Phase* C_data)
+void sampleAnalysis(const WaveformSample* sample_data, Phase* X_data, double phase_X_voltage)
 {
 
+    // Clipping check:
     const float threshold = 324.9f;
 
-    if ( fabsf(sample_data->phase_A_voltage) >= threshold) // Checks if ABSOLUTE value matches or exceeds threshold
+    if ( fabs(phase_X_voltage) >= threshold ) // Checks if ABSOLUTE value matches or exceeds threshold
     {
-        A_data->clip_timestamps[A_data->clip_count] = sample_data->timestamp; // Append (add to index = current clip count) the current sample timestamp to the clip timestamps array
-        A_data->clip_count++;
+        X_data->clip_timestamps[X_data->clip_count] = sample_data->timestamp; // Append (add to index = current clip count) the current sample's timestamp to the clip timestamps array
+        X_data->clip_count++;
     }
 
-    if ( fabsf(sample_data->phase_B_voltage) >= threshold)
-    {
-        B_data->clip_timestamps[B_data->clip_count] = sample_data->timestamp;
-        B_data->clip_count++;
-    }
-
-    if ( fabsf(sample_data->phase_C_voltage) >= threshold)
-    {
-        C_data->clip_timestamps[C_data->clip_count] = sample_data->timestamp;
-        C_data->clip_count++;
-    }
+    // Running totals:
+    X_data->voltage_running_total += phase_X_voltage;
+    X_data->voltage_square_total += phase_X_voltage * phase_X_voltage;
 
 }
 
-void sampleAnalysis(const WaveformSample* sample_data, Phase* A_data, Phase* B_data, Phase* C_data)
+void finalAnalysis()
 {
 
-    clipCheck(sample_data, A_data, B_data, C_data);
+
 
 }

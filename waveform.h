@@ -29,8 +29,7 @@ typedef struct
 
 // list of functions:
 
-void sampleAnalysis(const WaveformSample* sample_data, Phase* A_data, Phase* B_data, Phase* C_data);
-void clipCheck(const WaveformSample* sample_data, Phase* A_data, Phase* B_data, Phase* C_data);
+void sampleAnalysis(const WaveformSample* sample_data, Phase* X_data, double phase_X_voltage);
 
 #endif //PFE_PROJECT_WILLT_WAVEFORM_H
 
