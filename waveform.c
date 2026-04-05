@@ -20,9 +20,15 @@ void sampleAnalysis(const WaveformSample* sample_data, Phase* X_data, double pha
 
 }
 
-void finalAnalysis()
+void finalAnalysis(Phase* X_data)
 {
 
+    X_data->mean = X_data->voltage_running_total / 1000;
+    X_data->RMS = sqrt( X_data->voltage_square_total );
 
+    if ( 207 < X_data->RMS && X_data->RMS < 253 )
+        X_data->RMS_compliance = 1;
+    else
+        X_data->RMS_compliance = 0;
 
 }

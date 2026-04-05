@@ -30,6 +30,7 @@ typedef struct
 // list of functions:
 
 void sampleAnalysis(const WaveformSample* sample_data, Phase* X_data, double phase_X_voltage);
+void finalAnalysis(Phase* X_data);
 
 #endif //PFE_PROJECT_WILLT_WAVEFORM_H
 

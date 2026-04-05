@@ -27,7 +27,9 @@ int main(int argc, const char argv[])
         sampleAnalysis(sample_data, C_data, sample_data->phase_C_voltage);
     }
 
-    finalAnalysis();
+    finalAnalysis(A_data);
+    finalAnalysis(B_data);
+    finalAnalysis(C_data);
 
     report();
 
