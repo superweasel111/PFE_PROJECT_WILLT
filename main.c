@@ -7,7 +7,7 @@ int main(int argc, const char argv[])
     const char* file_input = &argv[1]; // Grab the first argument from the command line as the file name
     FILE* file = openFile(*file_input);
 
-    WaveformSample* sample_store = extractFileData(file);
+    const WaveformSample* sample_store = extractFileData(file);
 
     // Initialise Phase structs for each phase and assign pointers for later editing
     Phase A = {0,0,0,0,0,0};

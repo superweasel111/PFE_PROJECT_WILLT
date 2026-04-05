@@ -20,16 +20,15 @@ FILE* openFile(char file_input)
 WaveformSample* extractFileData(FILE* file)
 {
 
-    WaveformSample* sample_store = malloc(sizeof(WaveformSample) * 1000);
+    WaveformSample* sample_store = malloc(sizeof(WaveformSample) * 1001);
 
     int line_index = 0;
     char current_line[256];
 
-    fgets(current_line, sizeof(current_line), file); // Skip header
     while (fgets(current_line, sizeof(current_line), file) != NULL)
     {
         WaveformSample* current_sample = &sample_store[line_index];
-        sscanf(current_line,
+        int success = sscanf(current_line,
                 "%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf",
                 &current_sample->timestamp,
                 &current_sample->phase_A_voltage,
@@ -40,7 +39,9 @@ WaveformSample* extractFileData(FILE* file)
                 &current_sample->power_factor,
                 &current_sample->thd_percent);
 
-        line_index++;
+        // Only move to the next line index if the previous line was successfully stored:
+        if (success == 8)
+            line_index++;
     }
 
     return sample_store;
