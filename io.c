@@ -27,7 +27,7 @@ WaveformSample* extractFileData(FILE* file)
     while (fgets(current_line, sizeof(current_line), file) != NULL) // As long as the end of the file hasn't been reached,
     {
         WaveformSample* current_sample = &sample_store[line_index];
-        int success = sscanf(current_line,
+        const int success = sscanf(current_line,
                 "%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf",
                 &current_sample->timestamp,
                 &current_sample->phase_A_voltage,
@@ -46,12 +46,18 @@ WaveformSample* extractFileData(FILE* file)
     return sample_store;
 }
 
-void report(Phase* A_data, Phase* B_data, Phase* C_data)
+void report(const Phase* A_data, const Phase* B_data, const Phase* C_data)
 {
 
-    FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
+    // FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
 
-
+    printf("ANALYSIS  | PHASE A | PHASE B | PHASE C"
+           "Mean      |%*lf %*lf %*lf"
+           "RMS       |%*lf %*lf %*lf"
+           "Amplitude |%*lf %*lf %*lf",
+           28, A_data->mean, 28, B_data->mean, 28, C_data->mean,
+           28, A_data->RMS, 28, B_data->RMS, 28, C_data->RMS,
+           28, 0.0, 28, 0.0, 28, 0.0);
 
 }
 
