@@ -10,5 +10,6 @@
 
 WaveformSample* extractFileData(FILE* file);
 FILE* openFile(char file_input);
+void report();
 
 #endif //PFE_PROJECT_WILLT_IO_H
