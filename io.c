@@ -6,12 +6,13 @@
 #include "io.h"
 #include "waveform.h"
 
-FILE* openFile(char file_input)
+FILE* openFile(const char* file_input)
 {
-    FILE* file = fopen(&file_input, "r"); // Open the file
+    FILE* file = fopen(file_input, "r"); // Open the file
     if (file == NULL)
     {
         printf("Error opening file. Does it exist?");
+        exit(404);
     }
     return file;
 }
@@ -49,11 +50,11 @@ WaveformSample* extractFileData(FILE* file)
 void report(const Phase* A_data, const Phase* B_data, const Phase* C_data)
 {
 
-    // FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
+    FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
 
-    printf("ANALYSIS  | PHASE A | PHASE B | PHASE C"
-           "Mean      |%*lf %*lf %*lf"
-           "RMS       |%*lf %*lf %*lf"
+    printf("ANALYSIS  | PHASE A | PHASE B | PHASE C\n"
+           "Mean      |%*lf %*lf %*lf\n"
+           "RMS       |%*lf %*lf %*lf\n"
            "Amplitude |%*lf %*lf %*lf",
            28, A_data->mean, 28, B_data->mean, 28, C_data->mean,
            28, A_data->RMS, 28, B_data->RMS, 28, C_data->RMS,

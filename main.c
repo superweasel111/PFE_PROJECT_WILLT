@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 {
     const char* file_input = argv[1]; // Grab the first argument from the command line as the file name
 
-    FILE* file = openFile(*file_input); // Open file if it is found
+    FILE* file = openFile(file_input); // Open file if it is found
     const WaveformSample* sample_store = extractFileData(file);
     fclose(file); // Close the file once we have extracted its data
 
