@@ -2,9 +2,9 @@
 #include <math.h>
 #include "waveform.h"
 
-void sampleAnalysis(const WaveformSample* sample_data, Phase* X_data, double phase_X_voltage)
+void sampleAnalysis(const WaveformSample* sample_data, Phase* X_data, const double phase_X_voltage)
 {
-
+    printf("absolute voltage = %lf, clip_count = %d\n", fabs(phase_X_voltage), X_data->clip_count);
     // Clipping check:
     const float threshold = 324.9f;
 
