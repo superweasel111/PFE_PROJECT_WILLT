@@ -5,6 +5,8 @@
 #ifndef PFE_PROJECT_WILLT_WAVEFORM_H
 #define PFE_PROJECT_WILLT_WAVEFORM_H
 
+#define MAX_SAMPLES 1000
+
 typedef struct{
     double timestamp;
     double phase_A_voltage;
@@ -29,7 +31,7 @@ typedef struct
 
 // list of functions:
 
-void sampleAnalysis(const WaveformSample* sample_data, Phase* X_data, double phase_X_voltage);
+void sampleAnalysis(Phase* X_data, double timestamp, double phase_X_voltage);
 void finalAnalysis(Phase* X_data);
 
 #endif //PFE_PROJECT_WILLT_WAVEFORM_H

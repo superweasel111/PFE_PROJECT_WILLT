@@ -6,8 +6,9 @@
 
 int main(int argc, char* argv[])
 {
-    const char* file_input = argv[1]; // Grab the first argument from the command line as the file name
+    //const char* file_input = argv[1]; // Grab the first argument from the command line as the file name
 
+    const char* file_input = "C:\\Users\\willr\\CLionProjects\\PFE_PROJECT_WILLT\\power_quality_log.csv";
     FILE* file = openFile(file_input); // Open file if it is found
     WaveformSample* sample_store = extractFileData(file);
     fclose(file); // Close the file once we have extracted its data
@@ -22,27 +23,23 @@ int main(int argc, char* argv[])
     Phase* C_data = &C;
 
     // Iterate through each sample in the store, analysing each:
-    for (int sample_index = 0; sample_index < 1001; sample_index++)
+    for (int sample_index = 0; sample_index < MAX_SAMPLES; sample_index++)
     {
         const WaveformSample* sample_data = &sample_store[sample_index]; // Make a pointer referencing the current sample as an address in the array
-        printf("Index %d\n", sample_index);
-        sampleAnalysis(sample_data, A_data, sample_data->phase_A_voltage); // Analyse the current sample, providing an argument for each phase so their respective totals may be calculated
-        sampleAnalysis(sample_data, B_data, sample_data->phase_B_voltage);
-        sampleAnalysis(sample_data, C_data, sample_data->phase_C_voltage);
-    }
+        const double timestamp = sample_data->timestamp;
 
-    printf("Reached point 1!");
+        printf("Attempting index %d\n", sample_index); // Debug message
+
+        sampleAnalysis(A_data, timestamp, sample_data->phase_A_voltage); // Analyse the current sample, providing an argument for each phase so their respective totals may be calculated
+        sampleAnalysis(B_data, timestamp, sample_data->phase_B_voltage);
+        sampleAnalysis(C_data, timestamp, sample_data->phase_C_voltage);
+    }
 
     finalAnalysis(A_data);
     finalAnalysis(B_data);
     finalAnalysis(C_data);
 
-    printf("Reached point 2!");
-
     report(A_data, B_data, C_data);
-
-    printf("Reached point 3!");
-
 
     free(sample_store);
     return 0;

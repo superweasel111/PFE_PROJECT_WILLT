@@ -20,7 +20,7 @@ FILE* openFile(const char* file_input)
 WaveformSample* extractFileData(FILE* file)
 {
 
-    WaveformSample* sample_store = malloc(sizeof(WaveformSample) * 1001); // Create sample_store to be returned at the end while allocating memory for it
+    WaveformSample* sample_store = malloc(sizeof(WaveformSample) * MAX_SAMPLES+1); // Create sample_store to be returned at the end while allocating memory for it
 
     int line_index = 0;
     char current_line[256]; // A buffer to store each line from fgets()
@@ -48,7 +48,6 @@ WaveformSample* extractFileData(FILE* file)
 
 void report(const Phase* A_data, const Phase* B_data, const Phase* C_data)
 {
-
     FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
 
     fprintf(results_file,
@@ -61,7 +60,6 @@ void report(const Phase* A_data, const Phase* B_data, const Phase* C_data)
         28, 0.0, 28, 0.0, 28, 0.0);
 
     fclose(results_file);
-
 }
 
 
