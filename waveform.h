@@ -27,13 +27,20 @@ typedef struct
     double RMS;
     double RMS_compliance;
     int clip_count;
-    double clip_timestamps[];
-}Phase;
+    double clip_timestamps[MAX_SAMPLES];
+}PhaseX;
+
+typedef struct
+{
+    PhaseX A;
+    PhaseX B;
+    PhaseX C;
+}PhaseData;
 
 // list of functions:
 
-void sampleAnalysis(Phase* X_data, double timestamp, double phase_X_voltage);
-void finalAnalysis(Phase* X_data);
+void sampleAnalysis(PhaseX* phase, double timestamp, double phase_X_voltage);
+void finalAnalysis();
 
 #endif //PFE_PROJECT_WILLT_WAVEFORM_H
 

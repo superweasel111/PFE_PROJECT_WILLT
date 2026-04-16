@@ -2,7 +2,7 @@
 #include <math.h>
 #include "waveform.h"
 
-void sampleAnalysis(Phase* X_data, const double timestamp, const double phase_X_voltage)
+void sampleAnalysis(PhaseX* phase, const double timestamp, const double phase_X_voltage)
 {
 
     // Clipping check:
@@ -10,13 +10,12 @@ void sampleAnalysis(Phase* X_data, const double timestamp, const double phase_X_
 
     if ( fabs(phase_X_voltage) >= threshold ) // Checks if ABSOLUTE value matches or exceeds threshold
     {
-
-        X_data->clip_timestamps[X_data->clip_count] = timestamp; // Append (add to index = current clip count) the current sample's timestamp to the clip timestamps array
-        X_data->clip_count++;
+        phase->clip_timestamps[phase->clip_count] = timestamp; // Append the timestamp of the current sample to the store of timestamps at which the voltage clips
+        phase->clip_count++; // Increase the counter of instances at which the voltage clips
     }
 
     // Running totals:
-    X_data->voltage_running_total += phase_X_voltage;
+    phase ->voltage_running_total += phase_X_voltage;
     X_data->voltage_square_total += phase_X_voltage * phase_X_voltage;
 }
 
