@@ -8,7 +8,7 @@
 
 // list of functions:
 
-WaveformSample* extractFileData(FILE* file);
+WaveformSample* extractFileData(FILE* file, WaveformSample* sample_store);
 FILE* openFile(const char* file_input);
 void report(const Phase* A_data, const Phase* B_data, const Phase* C_data);
 

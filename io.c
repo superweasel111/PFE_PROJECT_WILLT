@@ -17,10 +17,8 @@ FILE* openFile(const char* file_input)
     return file;
 }
 
-WaveformSample* extractFileData(FILE* file)
+WaveformSample* extractFileData(FILE* file, WaveformSample* sample_store)
 {
-
-    WaveformSample* sample_store = malloc(sizeof(WaveformSample) * MAX_SAMPLES+1); // Create sample_store to be returned at the end while allocating memory for it
 
     int line_index = 0;
     char current_line[256]; // A buffer to store each line from fgets()
@@ -31,14 +29,14 @@ WaveformSample* extractFileData(FILE* file)
         WaveformSample* current_sample = &sample_store[line_index];
         sscanf(current_line,
                 "%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf",
-                &current_sample->timestamp,
-                &current_sample->phase_A_voltage,
-                &current_sample->phase_B_voltage,
-                &current_sample->phase_C_voltage,
-                &current_sample->line_current,
-                &current_sample->frequency,
-                &current_sample->power_factor,
-                &current_sample->thd_percent);
+                &current_sample->timestamp[line_index],
+                &current_sample->phase_A_voltage[line_index],
+                &current_sample->phase_B_voltage[line_index],
+                &current_sample->phase_C_voltage[line_index],
+                &current_sample->line_current[line_index],
+                &current_sample->frequency[line_index],
+                &current_sample->power_factor[line_index],
+                &current_sample->thd_percent[line_index]);
 
         line_index++;
     }

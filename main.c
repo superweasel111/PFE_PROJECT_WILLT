@@ -10,7 +10,11 @@ int main(int argc, char* argv[])
 
     const char* file_input = "C:\\Users\\willr\\CLionProjects\\PFE_PROJECT_WILLT\\power_quality_log.csv";
     FILE* file = openFile(file_input); // Open file if it is found
-    WaveformSample* sample_store = extractFileData(file);
+
+    WaveformSample* sample_store = {0};
+    sample_store = extractFileData(file, sample_store);
+
+
     fclose(file); // Close the file once we have extracted its data
 
     // Initialise Phase structs for each phase and assign pointers for later editing
@@ -26,7 +30,7 @@ int main(int argc, char* argv[])
     for (int sample_index = 0; sample_index < MAX_SAMPLES; sample_index++)
     {
         const WaveformSample* sample_data = &sample_store[sample_index]; // Make a pointer referencing the current sample as an address in the array
-        const double timestamp = sample_data->timestamp;
+        const double timestamp = sample_data->timestamp[sample_index];
 
         printf("Attempting index %d\n", sample_index); // Debug message
 
