@@ -4,7 +4,6 @@
 
 void sampleAnalysis(PhaseX* phase_X, const double phase_X_voltage, const double timestamp)
 {
-
     // Clipping check:
     const float threshold = 324.9f;
 
@@ -33,5 +32,4 @@ void finalAnalysis(PhaseX* phase)
 
     if (lower_threshold < phase->RMS && phase->RMS < upper_threshold)
         phase->RMS_compliance = 1;
-
 }

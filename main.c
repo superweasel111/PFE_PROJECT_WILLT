@@ -24,6 +24,9 @@ int main(int argc, char* argv[])
     // ______________________________________________________________________________________________________________
 
     PhaseStore* phase_data = {0}; // Initialise collection of phase data
+    PhaseX* phase_A = &phase_data->PhaseA;
+    PhaseX* phase_B = &phase_data->PhaseB;
+    PhaseX* phase_C = &phase_data->PhaseC;
 
     // Iterate through each sample in the store, analysing each:
     for (int sample_index = 0; sample_index < MAX_SAMPLES; sample_index++)
@@ -32,9 +35,9 @@ int main(int argc, char* argv[])
 
         printf("Attempting index %d\n", sample_index); // Debug message
 
-        sampleAnalysis(&phase_data->PhaseA, sample_store->phase_A_voltage[sample_index], timestamp); // Perform analysis on each phase, including voltage arguments so their respective totals may be calculated
-        sampleAnalysis(&phase_data->PhaseB, sample_store->phase_B_voltage[sample_index], timestamp);
-        sampleAnalysis(&phase_data->PhaseC, sample_store->phase_C_voltage[sample_index], timestamp);
+        sampleAnalysis(phase_A, sample_store->phase_A_voltage[sample_index], timestamp); // Perform analysis on each phase, including voltage arguments so their respective totals may be calculated
+        sampleAnalysis(phase_B, sample_store->phase_B_voltage[sample_index], timestamp);
+        sampleAnalysis(phase_C, sample_store->phase_C_voltage[sample_index], timestamp);
     }
 
 
@@ -45,7 +48,7 @@ int main(int argc, char* argv[])
     finalAnalysis(&phase_data->PhaseB);
     finalAnalysis(&phase_data->PhaseC);
 
-    report(A_data, B_data, C_data);
+    report(phase_data);
 
     return 0;
 }
