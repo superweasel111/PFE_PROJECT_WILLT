@@ -45,14 +45,15 @@ void report(const PhaseX* A_data, const PhaseX* B_data, const PhaseX* C_data)
 {
     FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
 
+    const int width = 14;
     fprintf(results_file,
-        "ANALYSIS  | PHASE A | PHASE B | PHASE C\n"
-        "Mean      |%*lf %*lf %*lf\n"
-        "RMS       |%*lf %*lf %*lf\n"
-        "Amplitude |%*lf %*lf %*lf",
-        28, A_data->mean, 28, B_data->mean, 28, C_data->mean,
-        28, A_data->RMS, 28, B_data->RMS, 28, C_data->RMS,
-        28, 0.0, 28, 0.0, 28, 0.0);
+        "ANALYSIS  |       PHASE A |        PHASE B |        PHASE C\n"
+        "Mean      |%*lf | %*lf | %*lf\n"
+        "RMS       |%*lf | %*lf | %*lf\n"
+        "Amplitude |%*lf | %*lf | %*lf",
+        width, A_data->mean, width, B_data->mean, width, C_data->mean,
+        width, A_data->RMS, width, B_data->RMS, width, C_data->RMS,
+        width, 0.0, width, 0.0, width, 0.0);
 
     fclose(results_file);
 }
