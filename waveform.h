@@ -32,15 +32,15 @@ typedef struct
 
 typedef struct
 {
-    PhaseX A;
-    PhaseX B;
-    PhaseX C;
-}PhaseData;
+    PhaseX PhaseA;
+    PhaseX PhaseB;
+    PhaseX PhaseC;
+}PhaseStore;
 
 // list of functions:
 
-void sampleAnalysis(PhaseX* phase, double timestamp, double phase_X_voltage);
-void finalAnalysis();
+void sampleAnalysis(PhaseX* phase_X, double phase_X_voltage, double timestamp);
+void finalAnalysis(PhaseX* phase);
 
 #endif //PFE_PROJECT_WILLT_WAVEFORM_H
 
