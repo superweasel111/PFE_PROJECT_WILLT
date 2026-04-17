@@ -25,7 +25,7 @@ typedef struct
     double mean;
     double voltage_square_total;
     double RMS;
-    double RMS_compliance;
+    int RMS_compliance;
     int clip_count;
     double clip_timestamps[MAX_SAMPLES];
 }PhaseX;

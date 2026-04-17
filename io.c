@@ -41,19 +41,34 @@ void extractFileData(FILE* file, WaveformSample* sample_store)
     }
 }
 
+static const char* complianceStr(const int compliance)
+{
+    return compliance ? "was" : "was not";
+}
+
 void report(const PhaseX* A_data, const PhaseX* B_data, const PhaseX* C_data)
 {
     FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
 
+    // Formatting preparations
     const int width = 14;
+    const char* compliance_A = complianceStr(A_data->RMS_compliance);
+    const char* compliance_B = complianceStr(B_data->RMS_compliance);
+    const char* compliance_C = complianceStr(C_data->RMS_compliance);
+
     fprintf(results_file,
         "ANALYSIS  |       PHASE A |        PHASE B |        PHASE C\n"
         "Mean      |%*lf | %*lf | %*lf\n"
         "RMS       |%*lf | %*lf | %*lf\n"
-        "Amplitude |%*lf | %*lf | %*lf",
-        width, A_data->mean, width, B_data->mean, width, C_data->mean,
-        width, A_data->RMS, width, B_data->RMS, width, C_data->RMS,
-        width, 0.0, width, 0.0, width, 0.0);
+        "Amplitude |%*lf | %*lf | %*lf"
+        "\n"
+        "__Phase A__\n"
+        "Phase A %s RMS compliant.\n"
+        "Phase A clipped %d times, at the following timestamps:",
+        width, A_data->mean, width, B_data->mean, width, C_data->mean, // Mean
+        width, A_data->RMS, width, B_data->RMS, width, C_data->RMS, // RMS
+        width, 0.0, width, 0.0, width, 0.0, // Amplitude
+        compliance_A, A_data->clip_count); // Phase A report
 
     fclose(results_file);
 }
