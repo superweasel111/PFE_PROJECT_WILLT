@@ -17,7 +17,7 @@ FILE* openFile(const char* file_input)
     return file;
 }
 
-WaveformSample* extractFileData(FILE* file, WaveformSample* sample_store)
+void extractFileData(FILE* file, WaveformSample* sample_store)
 {
 
     int line_index = 0;
@@ -26,25 +26,22 @@ WaveformSample* extractFileData(FILE* file, WaveformSample* sample_store)
     fgets(current_line, sizeof(current_line), file); // Skip header
     while (fgets(current_line, sizeof(current_line), file) != NULL) // As long as the end of the file hasn't been reached,
     {
-        WaveformSample* current_sample = &sample_store[line_index];
         sscanf(current_line,
                 "%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf",
-                &current_sample->timestamp[line_index],
-                &current_sample->phase_A_voltage[line_index],
-                &current_sample->phase_B_voltage[line_index],
-                &current_sample->phase_C_voltage[line_index],
-                &current_sample->line_current[line_index],
-                &current_sample->frequency[line_index],
-                &current_sample->power_factor[line_index],
-                &current_sample->thd_percent[line_index]);
+                &sample_store->timestamp[line_index],
+                &sample_store->phase_A_voltage[line_index],
+                &sample_store->phase_B_voltage[line_index],
+                &sample_store->phase_C_voltage[line_index],
+                &sample_store->line_current[line_index],
+                &sample_store->frequency[line_index],
+                &sample_store->power_factor[line_index],
+                &sample_store->thd_percent[line_index]);
 
         line_index++;
     }
-
-    return sample_store;
 }
 
-void report(const Phase* A_data, const Phase* B_data, const Phase* C_data)
+void report(const PhaseX* A_data, const PhaseX* B_data, const PhaseX* C_data)
 {
     FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
 

@@ -8,8 +8,8 @@
 
 // list of functions:
 
-WaveformSample* extractFileData(FILE* file, WaveformSample* sample_store);
 FILE* openFile(const char* file_input);
-void report(PhaseStore* phase_data);
+void extractFileData(FILE* file, WaveformSample* sample_store);
+void report(const PhaseX* A_data, const PhaseX* B_data, const PhaseX* C_data);
 
 #endif //PFE_PROJECT_WILLT_IO_H

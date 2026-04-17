@@ -10,20 +10,19 @@ int main(int argc, char* argv[])
     // ______________________________________________________________________________________________________________
 
     //const char* file_input = argv[1]; // Grab the first argument from the command line as the file name
-
     const char* file_input = "C:\\Users\\willr\\CLionProjects\\PFE_PROJECT_WILLT\\power_quality_log.csv";
+
     FILE* file = openFile(file_input); // Open file if it is found
 
-    WaveformSample *sample_store = calloc(1, sizeof(WaveformSample)); // Allocate memory for sample store and initialise it to be zeroes
-    sample_store = extractFileData(file, sample_store); // Store file data into sample store
-
+    WaveformSample* sample_store = calloc(1, sizeof(WaveformSample)); // Allocate memory for sample store and initialise it to be zeroes
+    extractFileData(file, sample_store); // Store file data into sample store
     fclose(file); // Close the file once we have extracted its data
 
 
     // PERFORM DATA ANALYSIS
     // ______________________________________________________________________________________________________________
 
-    PhaseStore* phase_data = {0}; // Initialise collection of phase data
+    PhaseStore* phase_data = calloc(1, sizeof(PhaseStore));
     PhaseX* phase_A = &phase_data->PhaseA;
     PhaseX* phase_B = &phase_data->PhaseB;
     PhaseX* phase_C = &phase_data->PhaseC;
@@ -39,7 +38,7 @@ int main(int argc, char* argv[])
         sampleAnalysis(phase_B, sample_store->phase_B_voltage[sample_index], timestamp);
         sampleAnalysis(phase_C, sample_store->phase_C_voltage[sample_index], timestamp);
     }
-
+    free(sample_store); // Samples no longer needed, all data analysed. Free memory.
 
     // PERFORM FINAL ANALYSIS AND WRITE REPORT
     // ______________________________________________________________________________________________________________
@@ -48,7 +47,8 @@ int main(int argc, char* argv[])
     finalAnalysis(&phase_data->PhaseB);
     finalAnalysis(&phase_data->PhaseC);
 
-    report(phase_data);
+    report(phase_A, phase_B, phase_C);
+    free(phase_data); // Phases no longer needed, all data reported. Free memory.
 
     return 0;
 }
