@@ -43,9 +43,9 @@ int main(int argc, char* argv[])
     // PERFORM FINAL ANALYSIS AND WRITE REPORT
     // ______________________________________________________________________________________________________________
 
-    finalAnalysis(&phase_data->PhaseA);
-    finalAnalysis(&phase_data->PhaseB);
-    finalAnalysis(&phase_data->PhaseC);
+    finalAnalysis(phase_A);
+    finalAnalysis(phase_B);
+    finalAnalysis(phase_C);
 
     report(phase_A, phase_B, phase_C);
     free(phase_data); // Phases no longer needed, all data reported. Free memory.

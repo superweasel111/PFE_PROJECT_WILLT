@@ -38,4 +38,8 @@ void finalAnalysis(PhaseX* phase)
 
     if (lower_threshold < phase->RMS && phase->RMS < upper_threshold)
         phase->RMS_compliance = 1;
+
+    // Amplitude
+    phase->amplitude = phase->max - phase->min;
+
 }
