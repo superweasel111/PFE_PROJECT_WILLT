@@ -41,36 +41,44 @@ void extractFileData(FILE* file, WaveformSample* sample_store)
     }
 }
 
-static const char* complianceStr(const int compliance)
+static void printClips(FILE* file, const PhaseX* phase)
 {
-    return compliance ? "was" : "was not";
+    for (int i = 0; i < phase->clip_count; i++)
+    {
+        fprintf(file, "%lf ", phase->clip_timestamps[i]);
+    }
+    fprintf(file, "\n"); // Empty line
+}
+
+static void phaseReport(FILE* file, const PhaseX* phase_data, const char phase_ID)
+{
+    char* compliance_str = "was not";
+    if (phase_data->RMS_compliance == 1)
+        compliance_str = "was";
+
+    fprintf(file, "Phase %c %s RMS compliant.\n", phase_ID, compliance_str);
+    fprintf(file, "Phase %c clipped %d times, at the following timestamps:\n", phase_ID, phase_data->clip_count);
+    printClips(file, phase_data);
+    fprintf(file, "\n"); // Empty line
 }
 
 void report(const PhaseX* A_data, const PhaseX* B_data, const PhaseX* C_data)
 {
-    FILE *results_file = fopen("results.txt", "w"); // Create a new results.txt for writing
+    FILE* f = fopen("results.txt", "w"); // Create a new results.txt for writing
 
     // Formatting preparations
     const int width = 14;
-    const char* compliance_A = complianceStr(A_data->RMS_compliance);
-    const char* compliance_B = complianceStr(B_data->RMS_compliance);
-    const char* compliance_C = complianceStr(C_data->RMS_compliance);
 
-    fprintf(results_file,
-        "ANALYSIS  |       PHASE A |        PHASE B |        PHASE C\n"
-        "Mean      |%*lf | %*lf | %*lf\n"
-        "RMS       |%*lf | %*lf | %*lf\n"
-        "Amplitude |%*lf | %*lf | %*lf\n"
-        "\n"
-        "__Phase A__\n"
-        "Phase A %s RMS compliant.\n"
-        "Phase A clipped %d times, at the following timestamps:",
-        width, A_data->mean, width, B_data->mean, width, C_data->mean, // Mean
-        width, A_data->RMS, width, B_data->RMS, width, C_data->RMS, // RMS
-        width, 0.0, width, 0.0, width, 0.0, // Amplitude
-        compliance_A, A_data->clip_count); // Phase A report
+    fprintf(f, "%*s | %*s | %*s | %*s | \n", width, "ANALYSIS", width, "PHASE A", width, "PHASE B", width, "PHASE C"); // Headers
+    fprintf(f, "%*s | %*lf | %*lf | %*lf |\n", width, "Amplitude", width, A_data->amplitude, width, B_data->amplitude, width, C_data->amplitude); // Amplitude
+    fprintf(f, "%*s | %*lf | %*lf | %*lf |\n", width, "Mean", width, A_data->mean, width, B_data->mean, width, C_data->mean); // Mean
+    fprintf(f, "%*s | %*lf | %*lf | %*lf |\n", width, "RMS", width, A_data->RMS, width, B_data->RMS, width, C_data->RMS); // RMS
+    fprintf(f, "\n"); // Empty line
+    phaseReport(f, A_data, 'A');
+    phaseReport(f, B_data, 'B');
+    phaseReport(f, C_data, 'C');
 
-    fclose(results_file);
+    fclose(f);
 }
 
 
