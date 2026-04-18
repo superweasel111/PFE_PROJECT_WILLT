@@ -67,7 +67,7 @@ void report(const PhaseX* A_data, const PhaseX* B_data, const PhaseX* C_data)
     FILE* f = fopen("results.txt", "w"); // Create a new results.txt for writing
 
     // Formatting preparations
-    const int width = 14;
+    const int width = 18;
 
     fprintf(f, "%*s | %*s | %*s | %*s | \n", width, "ANALYSIS", width, "PHASE A", width, "PHASE B", width, "PHASE C"); // Headers
     fprintf(f, "%*s | %*lf | %*lf | %*lf |\n", width, "Amplitude", width, A_data->amplitude, width, B_data->amplitude, width, C_data->amplitude); // Amplitude
