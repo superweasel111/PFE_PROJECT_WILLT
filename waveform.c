@@ -4,6 +4,12 @@
 
 void sampleAnalysis(PhaseX* phase_X, const double phase_X_voltage, const double timestamp)
 {
+    // Track maximum and minimum values so far for amplitude calculations later:
+    if (phase_X_voltage > phase_X->max) // If current voltage is larger than current maximum...
+        phase_X->max = phase_X_voltage; // Set as new maximum
+    if (phase_X_voltage < phase_X->min) // If current voltage is smaller than current minimum...
+        phase_X->min = phase_X_voltage; // Set as new minimum
+
     // Clipping check:
     const float threshold = 324.9f;
 
