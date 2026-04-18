@@ -21,6 +21,9 @@ typedef struct
 
 typedef struct
 {
+    double max;
+    double min;
+    double amplitude;
     double voltage_running_total;
     double mean;
     double voltage_square_total;

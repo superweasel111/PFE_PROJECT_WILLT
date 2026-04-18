@@ -60,7 +60,7 @@ void report(const PhaseX* A_data, const PhaseX* B_data, const PhaseX* C_data)
         "ANALYSIS  |       PHASE A |        PHASE B |        PHASE C\n"
         "Mean      |%*lf | %*lf | %*lf\n"
         "RMS       |%*lf | %*lf | %*lf\n"
-        "Amplitude |%*lf | %*lf | %*lf"
+        "Amplitude |%*lf | %*lf | %*lf\n"
         "\n"
         "__Phase A__\n"
         "Phase A %s RMS compliant.\n"
