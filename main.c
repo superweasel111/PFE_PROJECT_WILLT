@@ -7,7 +7,8 @@
 int main(int argc, char* argv[])
 {
     // If there are less than 2 arguments, the program provides proper usage
-    if (argc < 2) {
+    if (argc < 2)
+    {
         printf("Usage: %s <input_file>\n", argv[0]);
         return 1;
     }
