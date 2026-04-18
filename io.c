@@ -71,7 +71,7 @@ void report(const PhaseX* A_data, const PhaseX* B_data, const PhaseX* C_data)
 
     fprintf(f, "%*s | %*s | %*s | %*s | \n", width, "ANALYSIS", width, "PHASE A", width, "PHASE B", width, "PHASE C"); // Headers
     fprintf(f, "%*s | %*lf | %*lf | %*lf |\n", width, "Amplitude", width, A_data->amplitude, width, B_data->amplitude, width, C_data->amplitude); // Amplitude
-    fprintf(f, "%*s | %*lf | %*lf | %*lf |\n", width, "Mean", width, A_data->mean, width, B_data->mean, width, C_data->mean); // Mean
+    fprintf(f, "%*s | %*lf | %*lf | %*lf |\n", width, "Mean (DC offset)", width, A_data->mean, width, B_data->mean, width, C_data->mean); // Mean
     fprintf(f, "%*s | %*lf | %*lf | %*lf |\n", width, "RMS", width, A_data->RMS, width, B_data->RMS, width, C_data->RMS); // RMS
     fprintf(f, "\n"); // Empty line
     phaseReport(f, A_data, 'A');

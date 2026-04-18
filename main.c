@@ -6,11 +6,16 @@
 
 int main(int argc, char* argv[])
 {
+    // If there are less than 2 arguments, the program provides proper usage
+    if (argc < 2) {
+        printf("Usage: %s <input_file>\n", argv[0]);
+        return 1;
+    }
+
     // OPEN THE FILE AND EXTRACT THE DATA
     // ______________________________________________________________________________________________________________
 
-    //const char* file_input = argv[1]; // Grab the first argument from the command line as the file name
-    const char* file_input = "C:\\Users\\willr\\CLionProjects\\PFE_PROJECT_WILLT\\power_quality_log.csv";
+    const char* file_input = argv[1]; // Grab the first argument from the command line as the file name
 
     FILE* file = openFile(file_input); // Open file if it is found
 
@@ -32,7 +37,7 @@ int main(int argc, char* argv[])
     {
         const double timestamp = sample_store->timestamp[sample_index];
 
-        printf("Attempting index %d\n", sample_index); // Debug message
+        printf("Attempting line %d\n", sample_index+1); // Debug message
 
         sampleAnalysis(phase_A, sample_store->phase_A_voltage[sample_index], timestamp); // Perform analysis on each phase, including voltage arguments so their respective totals may be calculated
         sampleAnalysis(phase_B, sample_store->phase_B_voltage[sample_index], timestamp);
