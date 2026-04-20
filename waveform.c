@@ -36,8 +36,11 @@ void finalAnalysis(PhaseX* phase)
     phase->RMS = sqrt( phase->voltage_square_total / MAX_SAMPLES );
 
     // RMS Compliance
-    const double lower_threshold = 230 - (230 * 0.1);
-    const double upper_threshold = 230 + (230 * 0.1);
+    const double target_RMS = 230; // The RMS is expected to be 230V
+    const double compliance_tolerance = 0.1; // Tolerance band of +-10%
+
+    const double lower_threshold = target_RMS - (target_RMS * compliance_tolerance);
+    const double upper_threshold = target_RMS + (target_RMS * compliance_tolerance);
 
     if (lower_threshold < phase->RMS && phase->RMS < upper_threshold)
         phase->RMS_compliance = 1;
