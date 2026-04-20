@@ -12,7 +12,8 @@ FILE* openFile(const char* file_input)
     if (file == NULL)
     {
         printf("Error opening file. Does it exist?");
-        exit(404);
+        printf("Program exit with code %d", ERR_FILE_NOT_FOUND);
+        exit(ERR_FILE_NOT_FOUND);
     }
     return file;
 }
@@ -52,9 +53,7 @@ static void printClips(FILE* file, const PhaseX* phase)
 
 static void phaseReport(FILE* file, const PhaseX* phase_data, const char phase_ID)
 {
-    char* compliance_str = "was not";
-    if (phase_data->RMS_compliance == 1)
-        compliance_str = "was";
+    char* compliance_str = (phase_data->RMS_compliance == 1 ? "was" : "was not");
 
     fprintf(file, "Phase %c %s RMS compliant.\n", phase_ID, compliance_str);
     fprintf(file, "Phase %c clipped %d times, at the following timestamps:\n", phase_ID, phase_data->clip_count);

@@ -46,4 +46,3 @@ void sampleAnalysis(PhaseX* phase_X, double phase_X_voltage, double timestamp);
 void finalAnalysis(PhaseX* phase);
 
 #endif //PFE_PROJECT_WILLT_WAVEFORM_H
-

@@ -9,11 +9,11 @@ int main(const int argc, char* argv[])
 {
     const clock_t start_time = clock();
 
-    // If there are less than 2 arguments, the program provides proper usage
-    if (argc < 2)
+    // If there are more or less than 2 arguments, the program provides proper usage
+    if (argc != 2)
     {
         printf("Usage: %s <input_file>\n", argv[0]);
-        return 1;
+        exit(ERR_INVALID_USAGE);
     }
 
     // OPEN THE FILE AND EXTRACT THE DATA
