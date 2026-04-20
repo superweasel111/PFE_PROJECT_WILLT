@@ -13,6 +13,7 @@ int main(const int argc, char* argv[])
     if (argc != 2)
     {
         printf("Usage: %s <input_file>\n", argv[0]);
+        printf("Program exiting with code %d\n", ERR_INVALID_USAGE);
         exit(ERR_INVALID_USAGE);
     }
 

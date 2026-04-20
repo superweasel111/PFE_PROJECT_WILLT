@@ -11,8 +11,8 @@ FILE* openFile(const char* file_input)
     FILE* file = fopen(file_input, "r"); // Open the file
     if (file == NULL)
     {
-        printf("Error opening file. Does it exist?");
-        printf("Program exit with code %d", ERR_FILE_NOT_FOUND);
+        printf("Error opening file. Does it exist?\n");
+        printf("Program exit with code %d\n", ERR_FILE_NOT_FOUND);
         exit(ERR_FILE_NOT_FOUND);
     }
     return file;
