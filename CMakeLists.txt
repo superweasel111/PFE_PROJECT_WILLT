@@ -3,7 +3,7 @@ project(PFE_PROJECT_WILLT C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(PFE_PROJECT_WILLT main.c
+add_executable(waveform_analyser main.c
         waveform.h
         waveform.c
         io.c
