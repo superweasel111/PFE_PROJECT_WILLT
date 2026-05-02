@@ -21,7 +21,7 @@ It then performs the necessary calculations to report the following as part of a
 These instructions assume you have a gcc compiler installed. For the easiest installation, you may choose to use a prebuilt package as is available from such websites as [WibLibs](https://winlibs.com/)
 
 # Error codes #
-1: Invalid usage (wrong number of arguments)
+1: Invalid usage (wrong number of arguments)  
 404: File not found (File input points to NULL)
 
 # Compile and Run (CLion) #
@@ -48,9 +48,9 @@ The input file must be in the current working directory, or a relative/absolute 
 
 ## Compilation ##
 1. Navigate to project directory:
-> cd <path to project>
+> cd \<path to project>
 2. Compile to target directory (defaults to project directory if not specified):
-> gcc *.c -o <path>/waveform_analyser -lm
+> gcc *.c -o \<path>/waveform_analyser -lm
 
 ## Running ##
 1. Open cmd terminal
