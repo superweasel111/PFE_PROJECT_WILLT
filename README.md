@@ -35,14 +35,16 @@ or
 respectively.
 
 5. To run from the terminal:  
-> cd cmake-build-debug  
-\or  
+> cd cmake-build-debug
+
+or  
+
 > cd cmake-build-release  
 
 And then, to use the program,  
-> ./waveform_analyser <input_file>  
-The input file must be in the current working directory, or a relative/absolute file path must be provided. File extensions such as .txt or .csv must be included.
+> ./waveform_analyser \<input_file>  
 
+The input file must be in the current working directory, or a relative/absolute file path must be provided. File extensions such as .txt or .csv must be included.  
 
 # Compile and Run (executable using gcc) #
 
