@@ -36,11 +36,11 @@ respectively.
 
 5. To run from the terminal:  
 > cd cmake-build-debug  
-or  
+\or  
 > cd cmake-build-release  
 
 And then, to use the program,  
-> ./waveform_analyser <input_file>
+> ./waveform_analyser <input_file>  
 The input file must be in the current working directory, or a relative/absolute file path must be provided. File extensions such as .txt or .csv must be included.
 
 
@@ -55,7 +55,7 @@ The input file must be in the current working directory, or a relative/absolute 
 ## Running ##
 1. Open cmd terminal
 2. Navigate to executable directory
-> cd <path to executable directory>
+> cd \<path to executable directory>
 3. To use the program:
 > waveform_analyser <input_file>
 The file must be in the same directory as the program executable.[README.md](https://github.com/user-attachments/files/27302529/README.md)
