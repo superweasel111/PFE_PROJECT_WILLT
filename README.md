@@ -1,8 +1,8 @@
-Author: William Truman
-Software version 1.7
+Author: William Truman  
+Software version 1.7  
 
-README Created 29/04/26
-README Last updated 02/05/26
+README Created 29/04/26  
+README Last updated 02/05/26  
 Github repository: https://github.com/superweasel111/PFE_PROJECT_WILLT
 
 # Description #
@@ -34,13 +34,13 @@ or
 `cmake-build-release/`
 respectively.
 
-5. To run from the terminal:
-    cd cmake-build-debug
-or
-    cd cmake-build-release
+5. To run from the terminal:  
+> cd cmake-build-debug  
+or  
+> cd cmake-build-release  
 
-And then, to use the program,
-    ./waveform_analyser <input_file>
+And then, to use the program,  
+> ./waveform_analyser <input_file>
 The input file must be in the current working directory, or a relative/absolute file path must be provided. File extensions such as .txt or .csv must be included.
 
 
@@ -48,14 +48,14 @@ The input file must be in the current working directory, or a relative/absolute 
 
 ## Compilation ##
 1. Navigate to project directory:
-    cd <path to project>
+> cd <path to project>
 2. Compile to target directory (defaults to project directory if not specified):
-    gcc *.c -o <path>/waveform_analyser -lm
+> gcc *.c -o <path>/waveform_analyser -lm
 
 ## Running ##
 1. Open cmd terminal
 2. Navigate to executable directory
-    cd <path to executable directory>
+> cd <path to executable directory>
 3. To use the program:
-    waveform_analyser <input_file>
+> waveform_analyser <input_file>
 The file must be in the same directory as the program executable.[README.md](https://github.com/user-attachments/files/27302529/README.md)
