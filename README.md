@@ -18,7 +18,7 @@ It then performs the necessary calculations to report the following as part of a
 - Any timestamps at which voltage clipped (exceeded 324.9V)
 
 # Required Software #
-These instructions assume you have a gcc compiler installed. For the easiest installation, you may choose to use a prebuilt package as is available from such websites as [WibLibs](https://winlibs.com/)
+These instructions assume you have a gcc compiler installed. For the easiest installation, you may choose to use a prebuilt package as is available from such websites as [WinLibs](https://winlibs.com/)
 
 # Error codes #
 1: Invalid usage (wrong number of arguments)  
@@ -60,4 +60,7 @@ The input file must be in the current working directory, or a relative/absolute 
 > cd \<path to executable directory>
 3. To use the program:
 > waveform_analyser <input_file>
-The file must be in the same directory as the program executable.[README.md](https://github.com/user-attachments/files/27302529/README.md)
+
+The file must be in the same directory as the program executable.
+
+[README.md](https://github.com/user-attachments/files/27302529/README.md)
