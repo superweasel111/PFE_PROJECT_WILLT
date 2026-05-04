@@ -44,7 +44,7 @@ or
 And then, to use the program,  
 > ./waveform_analyser \<input_file>  
 
-The input file must be in the current working directory, or a relative/absolute file path must be provided. File extensions such as .txt or .csv must be included.  
+The input file must be in the current working directory, or a relative/absolute file path must be provided. File extensions such as .txt or .csv must be included. If there are spaces or other special characters in the file path, wrap it in speech marks.  
 
 # Compile and Run (executable using gcc) #
 
@@ -52,7 +52,9 @@ The input file must be in the current working directory, or a relative/absolute 
 1. Navigate to project directory in CLion terminal:
 > cd \<path to project>
 2. Compile to target directory (defaults to project directory if not specified):
-> gcc *.c -o \<path>/waveform_analyser -lm
+> gcc *.c -o \<path>/waveform_analyser -lm  
+  
+If there are spaces or other special characters in the file path, wrap it in speech marks.
 
 ## Running ##
 1. Open cmd terminal
