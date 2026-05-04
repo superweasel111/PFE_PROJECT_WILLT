@@ -49,7 +49,7 @@ The input file must be in the current working directory, or a relative/absolute 
 # Compile and Run (executable using gcc) #
 
 ## Compilation ##
-1. Navigate to project directory:
+1. Navigate to project directory in CLion terminal:
 > cd \<path to project>
 2. Compile to target directory (defaults to project directory if not specified):
 > gcc *.c -o \<path>/waveform_analyser -lm
